@@ -2,15 +2,15 @@ package org.example;
 
 import java.time.LocalDate;
 
-public class Person {
+public class Person implements Comparable<Person>{
     private String firstName;
     private String lastName;
 
-    private LocalDate dob;
+    private String dob;
     private int sizeInCm;
 
     //region constructer
-    public Person(String firstName, String lastName, LocalDate dob, int sizeInCm) {
+    public Person(String firstName, String lastName, String dob, int sizeInCm) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
@@ -35,11 +35,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public LocalDate getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -50,5 +50,16 @@ public class Person {
     public void setSizeInCm(int sizeInCm) {
         this.sizeInCm = sizeInCm;
     }
+
+
     //endregion
+
+    @Override
+    public int compareTo(Person o) {
+        int lastNameCompariston = this.getLastName().compareTo(o.getLastName());
+        if (lastNameCompariston != 0) {
+            return lastNameCompariston;
+        }
+        return this.getFirstName().compareTo(o.getFirstName());
+    }
 }
